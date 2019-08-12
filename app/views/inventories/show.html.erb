@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @inventory.product %>
+</p>
+
+<p>
+  <strong>Warehouse:</strong>
+  <%= @inventory.warehouse %>
+</p>
+
+<p>
+  <strong>Item count:</strong>
+  <%= @inventory.item_count %>
+</p>
+
+<p>
+  <strong>Low item threshol:</strong>
+  <%= @inventory.low_item_threshol %>
+</p>
+
+<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
+<%= link_to 'Back', inventories_path %>

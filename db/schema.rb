@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_050213) do
+ActiveRecord::Schema.define(version: 2019_08_12_050727) do
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "warehouse_id"
+    t.integer "item_count"
+    t.integer "low_item_threshol"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_inventories_on_product_id"
+    t.index ["warehouse_id"], name: "index_inventories_on_warehouse_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "sku_code", limit: 8

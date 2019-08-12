@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_044447) do
+ActiveRecord::Schema.define(version: 2019_08_12_050213) do
 
   create_table "products", force: :cascade do |t|
     t.string "sku_code", limit: 8
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2019_08_12_044447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sku_code"], name: "index_products_on_sku_code", unique: true
+  end
+
+  create_table "warehouses", force: :cascade do |t|
+    t.string "wh_code", limit: 16
+    t.string "name"
+    t.string "pincode"
+    t.integer "max_capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wh_code"], name: "index_warehouses_on_wh_code", unique: true
   end
 
 end

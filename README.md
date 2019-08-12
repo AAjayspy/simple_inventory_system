@@ -1,2 +1,24 @@
-# simple_live_inventory_system
-A simple live inventory management system that allows storing a list of products, a list of warehouses and the count and minimum stock thresholds of all products at all warehouses.
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

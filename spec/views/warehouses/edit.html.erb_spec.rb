@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe 'warehouses/edit', type: :view do
   before(:each) do
     @warehouse = assign(:warehouse, Warehouse.create!(
-                                      wh_code: 'MyString',
                                       name: 'MyString',
                                       pincode: 'MyString',
                                       max_capacity: 1
@@ -16,8 +15,7 @@ RSpec.describe 'warehouses/edit', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', warehouse_path(@warehouse), 'post' do
-      assert_select 'input[name=?]', 'warehouse[wh_code]'
-
+      
       assert_select 'input[name=?]', 'warehouse[name]'
 
       assert_select 'input[name=?]', 'warehouse[pincode]'

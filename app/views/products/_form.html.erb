@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :sku_code %>
-    <%= form.text_field :sku_code %>
+    <%= form.text_field :sku_code , readonly: form.object.persisted?%>
   </div>
 
   <div class="field">
@@ -25,7 +25,23 @@
     <%= form.label :price %>
     <%= form.text_field :price %>
   </div>
-
+  <table>
+    <%= form.fields_for :inventory do |invent| %>
+      <tr>
+        <th><font color="blue"><%=invent.object.warehouse.name%></font></th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <td><%= invent.label :item_count %></td>
+        <td><%= invent.text_field :item_count, placeholder: 'Item Count' %></td>
+        <td><%= invent.label :low_item_threshold %></td>
+        <td><%= invent.text_field :low_item_threshold, placeholder: 'Low Item Threshold' %></td>
+      </tr>
+    <% end %>
+  </table>
+  </br></br>
   <div class="actions">
     <%= form.submit %>
   </div>

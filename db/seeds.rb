@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -8,7 +10,7 @@
 #
 #
 # Seed the db with 60 sample products.
-(1..60).each { |i| product = Product.create!(name: "Product #{i}", price: rand(100.2...1000.2).round(2))}
+(1..60).each { |i| Product.create!(name: "Product #{i}", price: rand(100.2...1000.2).round(2)) }
 
 # 3 sample warehouses - Mumbai, New Delhi, and Bangalore
 # PRODUCT_THRESHOLD = 10 is defined in initializers/constants.rb
@@ -23,11 +25,10 @@ mumbai.generate_inventory(Product.all)
 
 # For Banglore warehouse, one third products below threshold.
 bangalore_products_set = Product.all.in_groups(3)
-bangalore.generate_inventory(bangalore_products_set[0], true )
-bangalore.generate_inventory(bangalore_products_set[1]+bangalore_products_set[2])
-
+bangalore.generate_inventory(bangalore_products_set[0], true)
+bangalore.generate_inventory(bangalore_products_set[1] + bangalore_products_set[2])
 
 # For Delhi warehouse, exactly half the products are below threshold.
 delhi_products_set = Product.all.in_groups(2)
-delhi.generate_inventory(delhi_products_set[0], true )
-delhi.generate_inventory(delhi_products_set[1] )
+delhi.generate_inventory(delhi_products_set[0], true)
+delhi.generate_inventory(delhi_products_set[1])

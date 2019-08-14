@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   extend UniqueTokensLib
   after_initialize :set_access_token
@@ -5,6 +7,7 @@ class Product < ApplicationRecord
   has_many :inventory, dependent: :destroy
   has_many :warehouses, through: :inventory
 
+  # Validation
   validates :sku_code, :name, :price, presence: true
   validates :sku_code, uniqueness: true, length: { is: 8 }
   validates :price, numericality: true
@@ -12,8 +15,9 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :inventory
 
   private
+
   def set_access_token
     # SKU_CODE :  is defined in initializers/constants.rb
-    self.sku_code = Product.generate_token(SKU_CODE) if self.new_record?
+    self.sku_code = Product.generate_token(SKU_CODE) if new_record?
   end
 end

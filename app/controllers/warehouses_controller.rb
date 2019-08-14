@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WarehousesController < ApplicationController
-  before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
+  before_action :set_warehouse, only: %i[show edit update destroy]
 
   # GET /warehouses
   # GET /warehouses.json
@@ -9,8 +11,7 @@ class WarehousesController < ApplicationController
 
   # GET /warehouses/1
   # GET /warehouses/1.json
-  def show
-  end
+  def show; end
 
   # GET /warehouses/new
   def new
@@ -18,16 +19,16 @@ class WarehousesController < ApplicationController
   end
 
   # GET /warehouses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /warehouses
   # POST /warehouses.json
+  # rubocop:disable Metrics/AbcSize
   def create
     @warehouse = Warehouse.new(warehouse_params)
-
     respond_to do |format|
       if @warehouse.save
+        @warehouse.generate_inventory(Product.all, false, true)
         format.html { redirect_to @warehouse, notice: 'Warehouse was successfully created.' }
         format.json { render :show, status: :created, location: @warehouse }
       else
@@ -36,6 +37,7 @@ class WarehousesController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   # PATCH/PUT /warehouses/1
   # PATCH/PUT /warehouses/1.json
@@ -62,13 +64,14 @@ class WarehousesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_warehouse
-      @warehouse = Warehouse.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def warehouse_params
-      params.require(:warehouse).permit(:wh_code, :name, :name, :pincode, :max_capacity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_warehouse
+    @warehouse = Warehouse.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def warehouse_params
+    params.require(:warehouse).permit(:wh_code, :name, :name, :pincode, :max_capacity)
+  end
 end

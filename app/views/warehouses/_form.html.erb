@@ -13,12 +13,7 @@
 
   <div class="field">
     <%= form.label :wh_code %>
-    <%= form.text_field :wh_code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :wh_code, readonly: form.object.new_record?%>
   </div>
 
   <div class="field">
